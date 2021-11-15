@@ -12,7 +12,19 @@ header {
     box-shadow: 0 0 10px;
 }
 
-nav h2 {
+nav div {
     display: inline-block;
+    vertical-align: center;
+    width: 200px;
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid silver;
+}
+
+nav footer {
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+    color: black;
     vertical-align: top;
 }

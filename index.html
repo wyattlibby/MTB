@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,19 +8,34 @@
     <link rel="stylesheet" href="style.css">
     <title>MTB</title>
 </head>
+
 <body>
     <header>
         <h1>Miss The Bus</h1>
     </header>
+    <aside></aside>
     <nav>
-        <h2>select crypto</h2>
-        <h2>enter amount</h2>
-        <h2>select the date</h2>
-        <input type="text">
+        <div>
+            <label for="crypto">select crypto</label>
+            <select id="crypto">
+                <option>bitcoin</option>
+                <option>ethereum</option>
+                <opion>XRP</opion>
+            </select>
+        </div>
+        <div>
+            <label for="amount">enter amount</label>
+            <input type="number" id="amount"> 
+        </div>
+        <div>
+            <label for="date">Date</label>
+            <input type="date" id="date">
+        </div>
         <button>search</button>
         <footer></footer>
     </nav>
     <main></main>
-    
+    <script src="javascript.js"></script>
 </body>
+
 </html>
