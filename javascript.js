@@ -3,23 +3,20 @@ const apikey = "121be7e3660d3c4c9ffa60ca6d43801ae8c012c5";
 function ticker() {
   fetch(
     "https://api.nomics.com/v1/currencies/ticker?key=121be7e3660d3c4c9ffa60ca6d43801ae8c012c5&ids=BTC,ETH,XRP&interval=1d,30d&convert=EUR&per-page=100&page=1"
-<<<<<<< HEAD
-=======
 
->>>>>>> de576c8a980658dfe5cf178547168d5262e38ed5
+
   )
     .then((response) => response.json())
     .then(displayticker);
 }
 
 function displayticker(data) {
-<<<<<<< HEAD
   console.log(data);
-=======
   // console.log(data);
->>>>>>> de576c8a980658dfe5cf178547168d5262e38ed5
   var html = "";
   for (let coin of data) {
+    currentprices [coin.id]=coin.price;
+
     html += `
       <span>${coin.name}: $${coin.price}</span>
     `;
@@ -30,8 +27,7 @@ function displayticker(data) {
 
 ticker();
 setInterval(ticker, 10000);
-<<<<<<< HEAD
-=======
+
 
 // capture input date into a var
 
@@ -49,36 +45,55 @@ setInterval(ticker, 10000);
 
 // })
 
-let date
-let selectedCoin
+let date;
+let selectedCoin="BTC";
+let dollars =1;
+let currentprices={};
+
+document.querySelector ("#amount").addEventListener("change", function(){
+  dollars=Number(this.value);
+  console.log("dollar changed",dollars);
+});
 
 var getDate = document.getElementById('date').addEventListener('change', function () {
   date = this.value;
-  console.log("inside", date);
+  console.log("datechanged", date);
 })
 
 var coinEl = document.getElementById('crypto').addEventListener('change', function() {
-  selectedCoin = this.value
-  console.log("inside", selectedCoin)
+  selectedCoin = this.value;
+  console.log("coinchanged", selectedCoin);
 })
 
-let historicalPrice
+let historicalPrice;
 
 var searchBtn = document.getElementById('search-btn').addEventListener('click', function () {
-  var getHistoricalPriceAPI = `https://api.nomics.com/v1/exchange-rates/history?key=121be7e3660d3c4c9ffa60ca6d43801ae8c012c5&currency=${selectedCoin}&start=${date}T00%3A00%3A00Z&end=${date}T00%3A00%3A00Z`
+  console.log (selectedCoin,date);
+  var getHistoricalPriceAPI = `https://api.nomics.com/v1/exchange-rates/history?key=121be7e3660d3c4c9ffa60ca6d43801ae8c012c5&currency=${selectedCoin}&start=${date}T00%3A00%3A00Z&end=${date}T00%3A00%3A00Z`;
 
   fetch(getHistoricalPriceAPI).then(function (response) {
     response.json().then(function (data) {
-      historicalPrice = data[0].rate
-      console.log("inside", historicalPrice)
-    })
-  })
-})
+      console.log (data);
+      historicalPrice = data[0].rate;
+      console.log("historicalprice", historicalPrice);
+      displayvaluedifference();
+    });
+  });
+});
 
-console.log(historicalPrice)
+// console.log(historicalPrice);
 
-let historicalEl = document.querySelector('historical-price');
-historicalEl.innerHTML = "<h1>hello</h1>";
+let historicalEl = document.querySelector('.historical-price');
+
+function displayvaluedifference(){
+  const coins =dollars / historicalPrice;
+  console.log(currentprices, selectedCoin, dollars, coins);
+  const price=Number(currentprices[selectedCoin]);
+  const valuenow =currentprices [selectedCoin]*coins;
+  historicalEl.textContent = `$${valuenow}`;
+
+}
+// historicalEl.innerHTML = "<h1>hello</h1>";
 
 // console.log(inputDate)
 // api url for historical data
@@ -90,4 +105,3 @@ historicalEl.innerHTML = "<h1>hello</h1>";
 //     console.log(data)
 //   })
 // })
->>>>>>> de576c8a980658dfe5cf178547168d5262e38ed5

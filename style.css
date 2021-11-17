@@ -2,11 +2,11 @@ body {
   margin: 0;
   text-align: center;
   font-family: sans-serif;
-  background-color: bisque;
+  background-color: rgb(240, 232, 221);
 }
 
 header {
-  color: green;
+  color: rgb(7, 122, 7);
   padding: 5px;
   margin-bottom: 25px;
   box-shadow: 0 0 10px;
@@ -20,11 +20,16 @@ nav div {
   padding: 5px;
   border: 1px solid silver;
 }
+nav button{
+  display: table;
+  margin: 10px auto;
+  padding: 10px 15px;
+}
 
 nav footer {
   text-align: center;
-  margin: 0;
+  margin-top: 25px;
   padding: 10px;
-  color: black;
-  vertical-align: top;
+  font-size: 28px;
+  font-weight: 900;
 }
